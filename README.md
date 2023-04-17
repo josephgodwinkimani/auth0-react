@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-npm i josephgodwinkimani/bunnynet-stream
+npm i bunnynet-stream
 ```
 
 ## Usage

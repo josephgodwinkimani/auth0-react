@@ -1,6 +1,6 @@
 {
   "name": "bunnynet-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Leverage BunnyNET Stream APIs in your Node application",
   "main": "./lib/index.js",
   "files": [

@@ -5,8 +5,8 @@ import fetch from 'cross-fetch';
 import Bunny from './Bunny';
 
 export default class Collection extends Bunny {
-  public libraryId: string | undefined;
-  public accessKey: string | undefined;
+  public libraryId: string;
+  public accessKey: string;
 
   public constructor(libraryId: string, accessKey: string) {
     super();
@@ -33,7 +33,7 @@ export default class Collection extends Bunny {
   public async createCollection(libraryId: string, name: string): Promise<any> {
     await fetch(this.bunnyURL + 'library/' + libraryId + '/collections', {
       method: 'POST',
-      headers: { Accept: 'application/json' },
+      headers: { Accept: 'application/json', AccessKey: this.accessKey },
       body: JSON.stringify({ name: name }),
       mode: 'no-cors',
     })
@@ -64,7 +64,7 @@ export default class Collection extends Bunny {
       this.bunnyURL + 'library/' + libraryId + '/collections/' + collectionId,
       {
         method: 'POST',
-        headers: { Accept: 'application/json' },
+        headers: { Accept: 'application/json', AccessKey: this.accessKey },
         body: JSON.stringify({ name: name }),
         mode: 'no-cors',
       }
@@ -106,7 +106,7 @@ export default class Collection extends Bunny {
       this.bunnyURL + 'library/' + libraryId + '/collections?' + params,
       {
         method: 'GET',
-        headers: { Accept: 'application/json' },
+        headers: { Accept: 'application/json', AccessKey: this.accessKey },
         mode: 'no-cors',
       }
     )
@@ -135,7 +135,7 @@ export default class Collection extends Bunny {
       this.bunnyURL + 'library/' + libraryId + '/collections/' + collectionId,
       {
         method: 'GET',
-        headers: { Accept: 'application/json' },
+        headers: { Accept: 'application/json', AccessKey: this.accessKey },
         mode: 'no-cors',
       }
     )
@@ -164,7 +164,7 @@ export default class Collection extends Bunny {
       this.bunnyURL + 'library/' + libraryId + '/collections/' + collectionId,
       {
         method: 'DELETE',
-        headers: { Accept: 'application/json' },
+        headers: { Accept: 'application/json', AccessKey: this.accessKey },
         mode: 'no-cors',
       }
     )

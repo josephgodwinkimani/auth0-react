@@ -71,7 +71,7 @@
     }
   },
   "lint-staged": {
-    "*.ts": "eslint --cache --cache-location .eslintcache --fix"
+    "src/*.ts": "eslint --cache --cache-location .eslintcache --fix"
   },
   "release": {
     "branches": [

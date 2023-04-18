@@ -22,21 +22,21 @@ import Route from '@ioc:Adonis/Core/Route'
 import Collection from 'bunnynet-stream/lib/Collection'
 
 Route.get('/collection', async () => {
-  const collection = new Collection('106699', '480756cb-4895-47ab-ba63569a594a-54b3-4030')
+  const collection = new Collection('123456', 'a12345cb-6789-12xy-qw12345a123e-er45-1234')
   const collectionList = collection.getCollection('1', '100', null, 'date')
   console.log(collectionList)
   return collectionList
 })
 
 Route.get('/single-collection', async () => {
-  const collection = new Collection('106699', '480756cb-4895-47ab-ba63569a594a-54b3-4030')
-  const singlecollection = collection.getSingleCollection('1b73ba12-8825-40c1-adbf-457174206983')
+  const collection = new Collection('123456', 'a12345cb-6789-12xy-qw12345a123e-er45-1234')
+  const singlecollection = collection.getSingleCollection('1s47rp45-5432-12g1-tyu7-457174206983')
   console.log(singlecollection)
   return singlecollection
 })
 
 Route.get('/create-collection', async () => {
-  const collection = new Collection('106699', '480756cb-4895-47ab-ba63569a594a-54b3-4030')
+  const collection = new Collection('123456', 'a12345cb-6789-12xy-qw12345a123e-er45-1234')
   const createcollection = collection.createCollection('Collection Animals in Savannah')
   console.log(createcollection)
   return createcollection

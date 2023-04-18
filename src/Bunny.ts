@@ -1,3 +1,7 @@
 export default class Bunny {
-  readonly bunnyURL: string = 'https://video.bunnycdn.com';
+  readonly bunnyURL = 'https://video.bunnycdn.com/';
+}
+
+export class BunnyTUS {
+  readonly bunnyURL = 'https://video.bunnycdn.com/tusupload';
 }

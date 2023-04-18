@@ -1,8 +1,14 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-// Using ES6 modules with Babel or TypeScript
-import fetch from 'cross-fetch';
+import axios from 'axios';
 import Bunny from './Bunny';
+
+// 👇️ expect json string from bunnynet
+type GetResponse = {
+  data: string[];
+};
 
 export default class Collection extends Bunny {
   public libraryId: string;
@@ -26,156 +32,158 @@ export default class Collection extends Bunny {
 
   /**
    *
-   * @param {string} libraryId
    * @param {string} name
    * @returns {Response|Error|string}
    */
-  public async createCollection(libraryId: string, name: string): Promise<any> {
-    await fetch(this.bunnyURL + 'library/' + libraryId + '/collections', {
-      method: 'POST',
-      headers: { Accept: 'application/json', AccessKey: this.accessKey },
-      body: JSON.stringify({ name: name }),
-      mode: 'no-cors',
-    })
-      .then(function (response: Response) {
-        if (response.status >= 400) {
-          return 'Bad response from server';
+  public async createCollection(name: string): Promise<any> {
+    try {
+      const res = await axios.post<GetResponse>(
+        this.bunnyURL + 'library/' + this.libraryId + '/collections',
+        {
+          method: 'POST',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          body: JSON.stringify({ name: name }),
+          mode: 'no-cors',
         }
-        return response.json();
-      })
-      .catch(function (err: Error) {
-        return JSON.stringify(err.message);
-      });
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
   }
 
   /**
    *
-   * @param {string} libraryId
    * @param {string} collectionId
    * @param {string} name
    * @returns {Response|Error|string}
    */
   public async updateCollection(
-    libraryId: string,
     collectionId: string,
     name: string
   ): Promise<any> {
-    await fetch(
-      this.bunnyURL + 'library/' + libraryId + '/collections/' + collectionId,
-      {
-        method: 'POST',
-        headers: { Accept: 'application/json', AccessKey: this.accessKey },
-        body: JSON.stringify({ name: name }),
-        mode: 'no-cors',
-      }
-    )
-      .then(function (response: Response) {
-        if (response.status >= 400) {
-          return 'Bad response from server';
+    try {
+      const res = await axios.post<GetResponse>(
+        this.bunnyURL +
+          'library/' +
+          this.libraryId +
+          '/collections/' +
+          collectionId,
+        {
+          method: 'POST',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          body: JSON.stringify({ name: name }),
+          mode: 'no-cors',
         }
-        return response.json();
-      })
-      .catch(function (err: Error) {
-        return JSON.stringify(err.message);
-      });
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
   }
 
   /**
    *
-   * @param {string} libraryId
-   * @param {string} page
-   * @param {string} itemsPerPage
-   * @param {string} search
-   * @param {string} orderBy
+   * @param {string|null} page
+   * @param {string|null} itemsPerPage
+   * @param {string|null} search
+   * @param {string|null} orderBy
    * @returns {Response|Error|string}
    */
   public async getCollection(
-    libraryId: string,
-    page: string,
-    itemsPerPage: string,
-    search: string,
-    orderBy: string
+    page: string | null,
+    itemsPerPage: string | null,
+    search: string | null,
+    orderBy: string | null
   ): Promise<any> {
-    const params = new URLSearchParams({
-      page: page,
-      itemsPerPage: itemsPerPage,
-      search: search,
-      orderBy: orderBy,
-    }).toString();
-    await fetch(
-      this.bunnyURL + 'library/' + libraryId + '/collections?' + params,
-      {
-        method: 'GET',
-        headers: { Accept: 'application/json', AccessKey: this.accessKey },
-        mode: 'no-cors',
-      }
-    )
-      .then(function (response: Response) {
-        if (response.status >= 400) {
-          return 'Bad response from server';
+    try {
+      const res = await axios.get<GetResponse>(
+        this.bunnyURL + 'library/' + this.libraryId + '/collections',
+        {
+          method: 'GET',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          params: {
+            page: page,
+            itemsPerPage: itemsPerPage,
+            search: search,
+            orderBy: orderBy,
+          },
         }
-        return response.json();
-      })
-      .catch(function (err: Error) {
-        return JSON.stringify(err.message);
-      });
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
   }
 
   /**
    *
-   * @param {string} libraryId
    * @param {string} collectionId
    * @returns {Response|Error|string}
    */
-  public async getSingleCollection(
-    libraryId: string,
-    collectionId: string
-  ): Promise<any> {
-    await fetch(
-      this.bunnyURL + 'library/' + libraryId + '/collections/' + collectionId,
-      {
-        method: 'GET',
-        headers: { Accept: 'application/json', AccessKey: this.accessKey },
-        mode: 'no-cors',
-      }
-    )
-      .then(function (response: Response) {
-        if (response.status >= 400) {
-          return 'Bad response from server';
+  public async getSingleCollection(collectionId: string): Promise<any> {
+    try {
+      const res = await axios.get<GetResponse>(
+        this.bunnyURL +
+          'library/' +
+          this.libraryId +
+          '/collections/' +
+          collectionId,
+        {
+          method: 'GET',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
         }
-        return response.json();
-      })
-      .catch(function (err: Error) {
-        return JSON.stringify(err.message);
-      });
+      );
+      return res.data;
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
   }
 
   /**
    *
-   * @param {string} libraryId
    * @param {string} collectionId
    * @returns {Response|Error|string}
    */
-  public async deleteSingleCollection(
-    libraryId: string,
-    collectionId: string
-  ): Promise<any> {
-    await fetch(
-      this.bunnyURL + 'library/' + libraryId + '/collections/' + collectionId,
-      {
-        method: 'DELETE',
-        headers: { Accept: 'application/json', AccessKey: this.accessKey },
-        mode: 'no-cors',
-      }
-    )
-      .then(function (response: Response) {
-        if (response.status >= 400) {
-          return 'Bad response from server';
+  public async deleteSingleCollection(collectionId: string): Promise<any> {
+    try {
+      const res = await axios.delete<GetResponse>(
+        this.bunnyURL +
+          'library/' +
+          this.libraryId +
+          '/collections/' +
+          collectionId,
+        {
+          method: 'DELETE',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
         }
-        return response.json();
-      })
-      .catch(function (err: Error) {
-        return JSON.stringify(err.message);
-      });
+      );
+      return res.data;
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
   }
 }

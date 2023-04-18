@@ -2,10 +2,6 @@
 
 > Leverage BunnyNET Stream APIs in your Node application
 
-## Requirements
-
-Install axios Promise based HTTP client `npm i axios`
-
 ## Install
 
 ```bash

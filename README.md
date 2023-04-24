@@ -12,6 +12,127 @@ npm i bunnynet-stream
 
 This package works with most node applications using a framework or not.
 
+### Get Library List
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const libraries = new Library(
+  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const libraryList = libraries.getLibrary(
+  '1', // current page to get
+  '100', // number of items on a page (perPage)
+  'Serie A', // search string
+  true // include access key
+);
+console.log(libraryList);
+return libraryList;
+```
+
+### Get Library
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const libraries = new Library(
+  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const singlelibrary = libraries.getSingleLibrary(
+  '1s47rp45-5432-12g1-tyu7-457174206983', // the ID of the video library that will be returned
+  true // include access key
+);
+console.log(singlelibrary);
+return singlelibrary;
+```
+
+### Create Library
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const libraries = new Library(
+  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const createlibrary = libraries.createLibrary(
+  'Serie A', // name of the video library
+  ['A', 'B'] // geo-replication regions of the underlying storage zone
+);
+console.log(createlibrary);
+return createlibrary;
+```
+
+### Update Library
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const library = new Library(
+  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const updatelibrary = library.createLibrary(
+  '1s47rp45-5432-12g1-tyu7-457174206983', // video library Id
+  'Serie A', // name of the video library
+  // From the line below add the type only e.g. ResetToken: boolean, the value here is either true or false https://docs.bunny.net/reference/videolibrarypublic_update
+    CustomHTML: string, // Sets the player custom HTML code
+    PlayerKeyColor: string, // Sets the player key control color
+    EnableTokenAuthentication: boolean, // Determines if the token authentication should be enabled
+    EnableTokenIPVerification: boolean, // Determines if the token IP verification should be enabled
+    ResetToken: boolean, // Set to true to reset the CDN and embed view token key
+    WatermarkPositionLeft: number, // Sets the left offset of the watermark position (in %)
+    WatermarkPositionTop: number, // Sets the top offset of the watermark position (in %)
+    WatermarkWidth: number, // Sets the width of the watermark (in %)
+    WatermarkHeight: number, // Sets the height of the watermark (in %)
+    EnabledResolutions: string, //  Sets the enabled resolutions for the transcoding. At least one resolution should be enabled. Possible values: 240p, 360p, 480p, 720p, 1080p, 1440p, 2160p
+    ViAiPublisherId: string, // Sets the vi.ai publisher ID
+    VastTagUrl: string, // Sets the Vast tag URL
+    WebhookUrl: string, // Sets the webhook API url
+    CaptionsFontSize: number, // Sets the captions display font size
+    CaptionsFontColor: string, // ets the captions display font color
+    CaptionsBackground: string, // Sets the captions display background color
+    UILanguage: string, // Sets the UI language of the video player
+    AllowEarlyPlay: string, // Determines if the Early-Play feature should be enabled
+    PlayerTokenAuthenticationEnabled: boolean, // Determines if the token authentication should be enabled
+    BlockNoneReferrer: boolean, // Determines if requests without a referer should be blocked
+    EnableMP4Fallback: boolean, // Determines if MP4 fallback should be enabled for this library
+    KeepOriginalFiles: boolean, // Determines if the original file should be kept after the video is processed
+    AllowDirectPlay: boolean, // Determines if direct play URLs should be enabled for the library
+    EnableDRM: boolean, // Determines if MediaCage basic DRM should be enabled for this library
+    Controls: string, // The comma separated list of controls that will be displayed in the video player. Possible values: play-large, play, progress, current-time, mute, volume, captions, settings, pip, airplay, fullscreen
+    Bitrate240p: number, // The bitrate used for encoding 240p videos
+    Bitrate360p: number, // The bitrate used for encoding 360p videos
+    Bitrate480p: number, // The bitrate used for encoding 480p videos
+    Bitrate720p: number, // The bitrate used for encoding 720p videos
+    Bitrate1080p: number, // The bitrate used for encoding 1080p videos
+    Bitrate1440p: number, // The bitrate used for encoding 1440p videos
+    Bitrate2160p: number, // The bitrate used for encoding 2160p videos
+    ShowHeatmap: boolean, // Determines if the video watch heatmap should be displayed in the player
+    EnableContentTagging: boolean, // Determines if content tagging should be enabled for this library
+    FontFamily: string, // The captions font family
+    EnableTranscribing: boolean, // Determines if the automatic audio transcribing is currently enabled for this zone
+    true, // EnableTranscribingTitleGeneration: boolean, Determines if automatic transcribing title generation is currently enabled
+    true, // EnableTranscribingDescriptionGeneration: boolean, Determines if automatic transcribing description generation is currently enabled
+    ["A", "B"] // The list of languages that the captions will be automatically transcribed to
+);
+console.log(updatelibrary);
+return updatelibrary;
+```
+
+### Delete Library
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const library = new Library(
+  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const deletelibrary = collection.deleteSingleLibrary(
+  '1s47rp45-5432-12g1-tyu7-457174206983' // library Id
+);
+console.log(deletelibrary);
+return deletelibrary;
+```
+
 ### Get Collection List
 
 ```ts
@@ -72,12 +193,12 @@ const collection = new Collection(
   '123456', // library id
   'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
 );
-const createcollection = collection.createCollection(
+const updatecollection = collection.createCollection(
   '1s47rp45-5432-12g1-tyu7-457174206983', // collection Id
   'Collection Animals in Savannah' // collection title
 );
-console.log(createcollection);
-return createcollection;
+console.log(updatecollection);
+return updatecollection;
 ```
 
 ### Delete Collection

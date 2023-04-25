@@ -300,4 +300,205 @@ export default class Library extends Bunny {
       }
     }
   }
+
+  /**
+   *
+   * @returns {Response|Error|string}
+   */
+  public async getLanguages(): Promise<any> {
+    try {
+      const res = await axios.get<GetResponse>(
+        this.bunnyURL + 'videolibrary/languages',
+        {
+          method: 'GET',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @returns {Response|Error|string}
+   */
+  public async addWatermark(id: string): Promise<any> {
+    try {
+      const res = await axios.put<GetResponse>(
+        this.bunnyURL + 'videolibrary/' + id + '/watermark',
+        {
+          method: 'PUT',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          mode: 'no-cors',
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @returns {Response|Error|string}
+   */
+  public async removeWatermark(id: string): Promise<any> {
+    try {
+      const res = await axios.delete<GetResponse>(
+        this.bunnyURL + 'videolibrary/' + id + '/watermark',
+        {
+          method: 'DELETE',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {string} hostname
+   * @returns {Response|Error|string}
+   */
+  public async addAllowedReferer(id: string, hostname: string): Promise<any> {
+    try {
+      const res = await axios.post<GetResponse>(
+        this.bunnyURL + 'videolibrary/' + id + '/addAllowedReferrer',
+        {
+          method: 'POST',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          body: JSON.stringify({
+            Hostname: hostname,
+          }),
+          mode: 'no-cors',
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {string} hostname
+   * @returns {Response|Error|string}
+   */
+  public async removeAllowedReferer(
+    id: string,
+    hostname: string
+  ): Promise<any> {
+    try {
+      const res = await axios.post<GetResponse>(
+        this.bunnyURL + 'videolibrary/' + id + '/removeAllowedReferrer',
+        {
+          method: 'POST',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          body: JSON.stringify({
+            Hostname: hostname,
+          }),
+          mode: 'no-cors',
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {string} hostname
+   * @returns {Response|Error|string}
+   */
+  public async addBlockedReferer(id: string, hostname: string): Promise<any> {
+    try {
+      const res = await axios.post<GetResponse>(
+        this.bunnyURL + 'videolibrary/' + id + '/addBlockedReferrer',
+        {
+          method: 'POST',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          body: JSON.stringify({
+            Hostname: hostname,
+          }),
+          mode: 'no-cors',
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {string} hostname
+   * @returns {Response|Error|string}
+   */
+  public async removeBlockedReferer(
+    id: string,
+    hostname: string
+  ): Promise<any> {
+    try {
+      const res = await axios.post<GetResponse>(
+        this.bunnyURL + 'videolibrary/' + id + '/removeBlockedReferrer',
+        {
+          method: 'POST',
+          headers: { Accept: 'application/json', AccessKey: this.accessKey },
+          body: JSON.stringify({
+            Hostname: hostname,
+          }),
+          mode: 'no-cors',
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      // 👇️ error: AxiosError<any, any>
+      if (axios.isAxiosError(error)) {
+        return error.message;
+      } else {
+        return error;
+      }
+    }
+  }
 }

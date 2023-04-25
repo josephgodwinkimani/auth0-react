@@ -18,7 +18,7 @@ This package works with most node applications using a framework or not.
 import Library from 'bunnynet-stream/lib/Library';
 
 const libraries = new Library(
-  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // this access key is different from collection's access key
 );
 const libraryList = libraries.getLibrary(
   '1', // current page to get
@@ -36,7 +36,7 @@ return libraryList;
 import Library from 'bunnynet-stream/lib/Library';
 
 const libraries = new Library(
-  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
 );
 const singlelibrary = libraries.getSingleLibrary(
   '1s47rp45-5432-12g1-tyu7-457174206983', // the ID of the video library that will be returned
@@ -52,7 +52,7 @@ return singlelibrary;
 import Library from 'bunnynet-stream/lib/Library';
 
 const libraries = new Library(
-  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
 );
 const createlibrary = libraries.createLibrary(
   'Serie A', // name of the video library
@@ -68,7 +68,7 @@ return createlibrary;
 import Library from 'bunnynet-stream/lib/Library';
 
 const library = new Library(
-  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
 );
 const updatelibrary = library.createLibrary(
   '1s47rp45-5432-12g1-tyu7-457174206983', // video library Id
@@ -124,13 +124,116 @@ return updatelibrary;
 import Library from 'bunnynet-stream/lib/Library';
 
 const library = new Library(
-  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
 );
-const deletelibrary = collection.deleteSingleLibrary(
+const deletelibrary = library.deleteSingleLibrary(
   '1s47rp45-5432-12g1-tyu7-457174206983' // library Id
 );
 console.log(deletelibrary);
 return deletelibrary;
+```
+
+### Get Library Languages
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const library = new Library(
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const videolibrarylanguages = library.getLanguages();
+console.log(videolibrarylanguages);
+return videolibrarylanguages;
+```
+
+### Add Watermark
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const library = new Library(
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const watermarkedlibrary = library.addWatermark(
+  '1s47rp45-5432-12g1-tyu7-457174206983' // library Id
+);
+console.log(watermarkedlibrary);
+return watermarkedlibrary;
+```
+
+### Remove Watermark
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const library = new Library(
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const nonwatermarkedlibrary = library.removeWatermark(
+  '1s47rp45-5432-12g1-tyu7-457174206983' // library Id
+);
+console.log(nonwatermarkedlibrary);
+return nonwatermarkedlibrary;
+```
+
+### Add Allowed Referer
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const libraries = new Library(
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const allowedreferer = libraries.addAllowedReferer(
+  '*.mywebsite.com' // hostname that will be added as an allowed referer
+);
+console.log(allowedreferer);
+return allowedreferer;
+```
+
+### Remove Allowed Referer
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const libraries = new Library(
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const allowedreferer = libraries.removeAllowedReferer(
+  '*.mywebsite.com' // hostname that will be removed as an allowed referer
+);
+console.log(allowedreferer);
+return allowedreferer;
+```
+
+### Add Blocked Referer
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const libraries = new Library(
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const blockedreferer = libraries.addBlockedReferer(
+  '*.mywebsite.com' // hostname that will be removed as an allowed referer
+);
+console.log(blockedreferer);
+return blockedreferer;
+```
+
+### Remove Blocked Referer
+
+```ts
+import Library from 'bunnynet-stream/lib/Library';
+
+const libraries = new Library(
+  '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+);
+const removeblockedreferer = libraries.removeBlockedReferer(
+  '*.mywebsite.com' // hostname that will be removed as a blocked referer
+);
+console.log(removeblockedreferer);
+return removeblockedreferer;
 ```
 
 ### Get Collection List
@@ -140,7 +243,7 @@ import Collection from 'bunnynet-stream/lib/Collection';
 
 const collection = new Collection(
   '123456', // library id
-  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
+  'a12345cb-6789-12xy-qw12345a123e-er45-1234' // collection's access key is different from library api key
 );
 const collectionList = collection.getCollection(
   '1', // current page to get

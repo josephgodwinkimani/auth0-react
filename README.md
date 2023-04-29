@@ -166,10 +166,10 @@ return watermarkedlibrary;
 ```ts
 import Library from 'bunnynet-stream/lib/Library';
 
-const library = new Library(
+const libraries = new Library(
   '2a4abbfbe40772ffa1fa-a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
 );
-const nonwatermarkedlibrary = library.removeWatermark(
+const nonwatermarkedlibrary = libraries.removeWatermark(
   '1s47rp45-5432-12g1-tyu7-457174206983' // library Id
 );
 console.log(nonwatermarkedlibrary);

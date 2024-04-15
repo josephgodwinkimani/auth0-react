@@ -329,7 +329,7 @@ const video = new Video(
   '123456', // library id
   'a12345cb-6789-12xy-qw12345a123e-er45-1234' // access key
 );
-const videoList = collection.getVideos(
+const videoList = video.getVideos(
   '1', // current page to get
   '100', // number of items on a page
   '1s47rp45-5432-12g1-tyu7-457174206983', // collection Id

@@ -570,3 +570,19 @@ upload.findPreviousUploads().then(function (previousUploads) {
   upload.start();
 });
 ```
+
+## Contributing
+
+Thanks to everyone who has contributed to this project so far.
+
+<a href="https://github.com/josephgodwinkimani/bunnynet-stream/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=josephgodwinkimani/bunnynet-stream" />
+</a>
+
+## Resources
+
+- [![Documentation](https://img.shields.io/badge/documentation-bunny.net-green.svg)](https://docs.bunny.net/)
+
+## License
+
+Licensed under the MIT license, see [`LICENSE`](LICENSE)
